@@ -14,6 +14,7 @@ struct Process {
 void sjfPreemptive(struct Process processes[], int n) {
     int currentTime = 0;
     int completed = 0;
+    int ganttChart[100]; // Array to store process IDs for Gantt chart
 
     while (completed < n) {
         int minBurstTime = INT_MAX;
@@ -30,6 +31,7 @@ void sjfPreemptive(struct Process processes[], int n) {
             currentTime++;
         } else {
             processes[shortestJob].remaining_time--;
+            ganttChart[currentTime] = processes[shortestJob].id; // Store the process ID in the Gantt chart
             currentTime++;
 
             if (processes[shortestJob].remaining_time == 0) {
@@ -40,8 +42,14 @@ void sjfPreemptive(struct Process processes[], int n) {
             }
         }
     }
-}
 
+    // Print Gantt chart
+    printf("\nGantt Chart:\n");
+    for (int i = 0; i < currentTime; i++) {
+        printf("P%d ", ganttChart[i]);
+    }
+    printf("\n");
+}
 
 int main() {
     int n, timeQuantum;
@@ -62,7 +70,6 @@ int main() {
 
     printf("\nShortest Job First (Preemptive) Scheduling:\n");
     sjfPreemptive(processes, n);
-
 
     return 0;
 }
