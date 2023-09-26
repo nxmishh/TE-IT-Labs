@@ -1,0 +1,102 @@
+
+
+## First line to denote a bash file
+    #!/bash/bin
+
+## Generic Commands
+
+    apt         : Provides a high-level CLI for the package management system 
+
+    bc          : Command line calculator
+
+    cal         : calender 
+
+    chmod	    : Used to change the access mode of a file
+
+    curl	    : A tool to transfer data to or from a server, using any of the supported protocols
+
+    diff	    : Used to display the differences in the files by comparing the files line by line
+
+    find	    : Used to find files and directories and perform subsequent operations on them
+
+    gcc	        : GNU Compiler Collections is used to compile mainly C and C++ language
+
+    help	    : Displays information about shell built-in commands
+
+
+    ifconfig    : Used to configure the kernel-resident network interfaces.
+
+    man	        : Used to display the user manual of any command that we can run on the terminal   
+
+    nc(netcat)  : It is one of the powerful networking tool, security tool or network monitoring tool.
+
+    netstat	    : Displays various network related information such as network connections, routing tables, etc.
+
+    passwd	    : Used to change the user account passwords
+
+    screen	    : Provides the ability to launch and use multiple shell sessions from a single ssh session
+
+    source	    : Used to read and execute the content of a file(generally set of commands), passed as an argument in the current shell script
+
+    sudo	    : Used as a prefix of some command that only superuser are allowed to run
+
+    ssh	        : Protocol used to securely connect to a remote server/system
+
+    systemctl	: Used to examine and control the state of “systemd” system and service manager
+
+    type        : Used to find the type of command
+
+    whatis	    : Used to get a one-line manual page descriptions
+
+    who	        : Used to get information about currently logged in user on to system
+
+    zip	        : It is a compression and file packaging utility for Unix. Each file is stored in single .zip {.zip-filename} file with the extension .zip
+
+
+
+
+
+## Navigation or file manipulation
+
+    cd      : change directory
+
+    ls 	    : list files/folders in current directory
+
+    mkdir	: Allows the user to create directories. This command can create multiple directories at once
+
+    cp	    : Used to copy files or group of files or directory
+
+    mv	    : Used to move one or more files or directories from one place to another in file system like UNIX
+
+    cat	    : Reads data from file and gives their content as output. It helps us to create, view, concatenate files
+
+    rm	    : Used to remove objects such as files, directories
+
+    rmdir	: Used to remove empty directories from the filesystem in Linux
+
+    touch	: Used to create, change and modify timestamps of a file
+
+    Head	: Prints the top N number of data of the given input
+
+    join	: It is a command line utility for joining lines of two files based on a key field present in both the files
+
+    look	: Shows the lines beginning with a given string
+
+    printf	: Used to display the given string, number or any other format specifier on the terminal window    
+
+    echo    : print line in terminal
+
+    read	: Reads input from user
+
+    rename	: Used to rename the named files according to the regular expression perlexpr
+
+    sort	: Used to sort a file, arranging the records in a particular order 
+
+    split	: Used to split large files into smaller files
+
+    grep	: Searches a file for a particular pattern of characters, and displays all lines that contain that pattern
+
+    sed	    : Used for finding, filtering, text substitution, replacement and text manipulations like insertion, deletion search et
+
+    uniq	: It is a command line utility that reports or filters out the repeated lines in a file
+

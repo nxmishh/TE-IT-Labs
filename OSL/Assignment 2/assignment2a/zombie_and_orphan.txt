@@ -1,0 +1,29 @@
+
+          						 ********Zombie Process**************
+
+A zombie process is a process that has completed its execution but still has an entry in the process table.
+This entry contains information about the process, including its exit status, but the process itself has 
+terminated. Zombie processes can occur when a parent process does not promptly collect the exit status of 
+its child processes using the wait() system call.
+
+The termination of the parent process does not directly affect the existence of its child's zombie process. 
+The zombie process will remain in the process table until one of the following actions occurs:
+
+	1. The parent process collects the exit status of the child process using the wait() or waitpid() system call. 
+	   Once the exit status is collected, the zombie process is removed from the process table, and its resources 
+	   are released by the operating system.
+
+	2. The operating system reaps the zombie process automatically. Most modern operating systems have mechanisms in 
+	   place to periodically clean up zombie processes, ensuring that system resources are not indefinitely tied up 
+	   by zombie processes.
+	    
+							  	********Orphan Process**************
+
+A process whose parent process no more exists i.e. either finished or terminated without waiting for its child process
+to terminate is called an orphan process. The orphan process is soon adopted by init process, once its parent process 
+dies.
+
+
+
+Parent yet to call exit() and is not waiting for child and child calls exit()   										--->  zombie process
+Parent calls exit() without removing the child process from the process table (by wait()) and child yet to call exit()  --->  orphan process
