@@ -11,10 +11,10 @@ struct Process {
 };
 
 // Function to perform Round Robin scheduling
-
 void roundrobin(struct Process processes[], int n, int timeQuantum) {
     int currentTime = 0;
     int completed = 0;
+    int ganttChart[100]; // Array to store process IDs for Gantt chart
 
     while (completed < n) {
         for (int i = 0; i < n; i++) {
@@ -22,6 +22,11 @@ void roundrobin(struct Process processes[], int n, int timeQuantum) {
                 int executionTime = (processes[i].burst_time < timeQuantum) ? processes[i].burst_time : timeQuantum;
                 currentTime += executionTime;
                 processes[i].burst_time -= executionTime;
+
+                // Store the process ID in the Gantt chart
+                for (int j = currentTime - executionTime; j < currentTime; j++) {
+                    ganttChart[j] = processes[i].id;
+                }
 
                 if (processes[i].burst_time == 0) {
                     processes[i].completion_time = currentTime;
@@ -31,8 +36,15 @@ void roundrobin(struct Process processes[], int n, int timeQuantum) {
             }
         }
     }
+
+    // Print Gantt chart
+    printf("\nGantt Chart:\n");
+    for (int i = 0; i < currentTime; i++) {
+        printf("P%d ", ganttChart[i]);
+    }
+    printf("\n");
 }
-	
+
 int main() {
     int n, timeQuantum;
 
@@ -47,13 +59,12 @@ int main() {
         scanf("%d", &processes[i].arrival_time);
         printf("Enter burst time for process %d: ", processes[i].id);
         scanf("%d", &processes[i].burst_time);
-
     }
 
-    printf("\nEnter the time quatum for round robin: ");
-    scanf("%d" , &timeQuantum);
+    printf("\nEnter the time quantum for Round Robin: ");
+    scanf("%d", &timeQuantum);
 
-	roundrobin(processes, n, timeQuantum);
+    roundrobin(processes, n, timeQuantum);
 
     return 0;
 }
