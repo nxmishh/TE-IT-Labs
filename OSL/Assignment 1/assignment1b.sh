@@ -9,15 +9,17 @@ create_ab(){
 	echo " "
     read -p "Name of Address Book : " filename 
     touch $filename 
-    printf "%-1s %-10s %-5s %-10s %-6s\n" "name" "Phno" "area" "city" "pincode" >> $filename
+    printf "%-10s %-10s %-10s %-10s %-6s\n" "Name" "Ph No" "Area" "City" "pincode" >> $filename
 }
 
 # VIEW ADDRESS BOOK
  view_ab(){
+ 
 	echo " "
 	echo "--------------------------------------"
 	echo " "
-    cat $filename
+	read -p "Enter the name of the file : " name1
+    cat $name1
 }
 
 # INSERT A RECORD 
@@ -25,6 +27,7 @@ create_ab(){
 	echo " "
 	echo "--------------------------------------"
 	echo " "
+	read -p "Enter the name of the file " name2
     
     read -p "Name : " name
     read -p "Phone No : " Phno
@@ -32,7 +35,7 @@ create_ab(){
     read -p "City : " city
     read -p "Pincode : " pc
     
-    printf "%-1s %-10s %-5s %-10s %-6s\n" "$name" "$Phno" "$area" "$city" "$pincode" >> "$filename"
+	printf "%-10s %-10d %-10s %-10s %-6d\n" "$name" "$Phno" "$area" "$city" "$pc" >> $name2
 }
 
 # SEARCH A RECORD
@@ -40,7 +43,10 @@ create_ab(){
 	echo " "
 	echo "--------------------------------------"
 	echo " "
-
+	
+	read -p "Enter the name of the file : " name3
+	while [ true ]
+	do
 	echo "Which criteria do you want to search"
 
 	read -p " Name(1) or Phno(0) : " choice
@@ -48,7 +54,7 @@ create_ab(){
 	if [ $choice -eq 1 ]
 	then 
 	read -p "Enter the name :" nm
-	grep $nm $filename
+	grep $nm $name3
 
 	elif [ $choice -eq 0 ]
 	then 
@@ -56,7 +62,7 @@ create_ab(){
 
 	echo "Record(s) Found :"
 
-	grep $pn $filename
+	grep $pn $name3
 
 	elif [ $choice -eq 2 ]
 	then 
@@ -68,6 +74,7 @@ create_ab(){
 	read -p "Name(1) or Phno(0) :" choice
 
 	fi
+	done
 }
 
 # DELETE A RECORD
@@ -75,22 +82,19 @@ create_ab(){
 	echo " "
 	echo "--------------------------------------"
 	echo " "
+	read -p "Enter the name of the file : " name4
 	echo "Which record do you want to delete :"
 	echo "Enter exact Phone no of record : "
 	read phn
 
-
-
 	echo "The following record will be deleted: "
-	grep $phn $filename
-
-
+	grep $phn $name4
 
 	read -p "To proceed (y/n) :" ch
 
-	if [[ ch -eq 121 ]]
+	if [[ $ch == "y" || $ch == "Y" ]]
 	then 
-	sed '/$phn/d' ./$filename 
+	sed -i "/$phn/d" $name4	
 	else
 	exit
 	fi
@@ -101,28 +105,28 @@ create_ab(){
 	echo " "
 	echo "--------------------------------------"
 	echo " "
+	read -p "Enter the name of the file : " name5
 	echo "Modify Record "
 	read -p "Enter exact Phone no of record that you want to modify : " ppn
 
 	echo "The following record will be modified : "
-	grep $ppn $filename
+	grep $ppn $name5
+	
+	read -p "Enter the credential that you want to modify ( eg. name, phone no. etc ) :" oldword 
+	echo
+	read -p "Enter the record with which you want to replace :" newword
 
-	prevrec=$(grep $ppn $filename) 
-
-
-
-	echo "Enter the record with which you want to replace :" 
-	echo "Name" "Phone No" "Area" "City" "Pin Code"
-	read newrec
-
-
-
-	sed 's/$prevrec/$newrec/g' $filename
+	sed -i "/$ppn/s/$oldword/$newword/g" $name5
 }
 
 code
 
 # MAIN
+
+while [ true ]
+do 
+
+
 echo " "
 echo "--------------------------------------"
 echo " "
@@ -140,8 +144,6 @@ echo " 7 . Exit "
 echo ""
 echo ""
 
-while [ true ]
-do 
 
 read -p "Enter the choice " chh
 
@@ -155,12 +157,14 @@ echo " "
 	    create_ab
 	    ;;
 	 2)
+	    
 	   view_ab
 	   ;;
-	 3)
+	 3) 
 	   	insert_ab
 	   ;;
 	 4)
+	 	
 		search_ab
 	    ;;
 	 5)

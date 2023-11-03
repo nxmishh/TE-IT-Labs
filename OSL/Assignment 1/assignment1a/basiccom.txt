@@ -76,7 +76,7 @@
 
     touch	: Used to create, change and modify timestamps of a file
 
-    Head	: Prints the top N number of data of the given input
+    head	: Prints the top N number of data of the given input
 
     join	: It is a command line utility for joining lines of two files based on a key field present in both the files
 
