@@ -8,7 +8,7 @@
 void bubbleSort(int arr[], int n) {
     int temp;
     for (int i = 0; i < n - 1; i++) {
-        for (int j = i; j < n - i - 1; j++) {
+        for (int j = 0; j < n - i - 1; j++) {
             if (arr[j] > arr[j + 1]) {
                 // Swap the elements
                 temp = arr[j];
@@ -26,12 +26,10 @@ int main() {
     scanf("%d", &n);
 
     int arr[n];
-    int arr_copy[n];
 
     printf("Enter %d integers:\n", n);
     for (int i = 0; i < n; i++) {
         scanf("%d", &arr[i]);
-        arr_copy[i] = arr[i];
     }
 
     // Create a child process
@@ -47,38 +45,22 @@ int main() {
         printf("\n------------------------In Child Process---------------------------------\n");
         printf("Child process is executing a different program to display the sorted array in reverse order.\n");
 
-        // Execute the child program with execv
-        char *child_program = "./child.out";
-        char *args[2];  // The arguments for the child program
-        args[0] = child_program;
-        args[1] = NULL;
-
-        execv(child_program, args);  // Execute the child program
-
-        // If execv fails, print an error message
-        perror("execv");
-        exit(1);
+ 
     } else {
         // This is the parent process
         printf("\n--------------------In Parent Process------------------------------------\n");
         printf("Parent process is sorting the integers...\n");
 
-        // You can implement a different sorting algorithm here
-        // For demonstration, we'll use a simple selection sort.
-        for (int i = 0; i < n - 1; i++) {
-            int min_index = i;
-            for (int j = i + 1; j < n; j++) {
-                if (arr_copy[j] < arr_copy[min_index]) {
-                    min_index = j;
-                }
-            }
-            // Swap the elements
-            int temp = arr_copy[i];
-            arr_copy[i] = arr_copy[min_index];
-            arr_copy[min_index] = temp;
-        }
+        bubbleSort(arr, n);
 
         printf("Parent process sorting complete.\n");
+        
+        printf("Sorted %d integers:\n", n);
+		for (int i = 0; i < n; i++) {
+		    printf("%d", arr[i]);
+		    printf(" ");
+		}
+		printf("\n");
 
         // Pass the sorted array as command-line arguments to the child program
         char *child_program = "./child.out";
@@ -86,7 +68,7 @@ int main() {
         args[0] = child_program;
         for (int i = 0; i < n; i++) {
             args[i + 1] = malloc(10);  // Assuming each number can be represented by up to 10 characters
-            snprintf(args[i + 1], 10, "%d", arr_copy[i]);
+            snprintf(args[i + 1], 10, "%d", arr[i]);
         }
         args[n + 1] = NULL;
 

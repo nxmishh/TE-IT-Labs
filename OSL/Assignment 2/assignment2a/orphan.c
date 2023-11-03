@@ -45,6 +45,11 @@ int main() {
         printf("Child process sorting the integers using bubble sort...\n");
         bubbleSort(arr, n);
         printf("Child process sorting complete.\n");
+        printf("Sorted array (child process):\n");
+        for (int i = 0; i < n; i++) {
+            printf("%d ", arr[i]);
+        }
+        printf("\n");
     } else {
         // This is the parent process
         printf("Parent process is terminating intentionally...\n");

@@ -19,6 +19,7 @@ void bubbleSort(int arr[], int n) {
     }
 }
 
+
 int main() {
     int n;
 
@@ -65,20 +66,8 @@ int main() {
         printf("\n");
         printf("Parent process sorting the integers using a different sorting algorithm...\n");
 
-
-        for (int i = 0; i < n - 1; i++) {
-            int min_index = i;
-            for (int j = i + 1; j < n; j++) {
-                if (arr_copy[j] < arr_copy[min_index]) {
-                    min_index = j;
-                }
-            }
-            // Swap the elements
-            int temp = arr_copy[i];
-            arr_copy[i] = arr_copy[min_index];
-            arr_copy[min_index] = temp;
-
-		}
+		bubbleSort(arr, n);
+        
         printf("Parent process sorting complete.\n");
         
         printf("Sorted array (parent process):\n");
