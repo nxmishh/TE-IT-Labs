@@ -1,11 +1,14 @@
 // C++ program to demonstrate
 // C-SCAN Disk Scheduling algorithm
-#include <bits/stdc++.h>
+#include<iostream>
+#include<vector>
+#include<algorithm>
+
+
 using namespace std;
 
 // Code by Vikram Chaurasia
 
-int size = 8;
 int disk_size = 200;
 
 void CSCAN(int arr[], int head)
@@ -25,7 +28,7 @@ void CSCAN(int arr[], int head)
 	// head will be serviced when
 	// once the head comes back
 	// to the beginning (left end).
-	for (int i = 0; i < size; i++) {
+	for (int i = 0; i < 8; i++) {
 		if (arr[i] < head)
 			left.push_back(arr[i]);
 		if (arr[i] > head)
@@ -94,7 +97,7 @@ int main()
 {
 
 	// request array
-	int arr[size] = { 176, 79, 34, 60, 92, 11, 41, 114 };
+	int arr[] = { 176, 79, 34, 60, 92, 11, 41, 114 };
 	int head = 50;
 
 	cout << "Initial position of head: " << head << endl;

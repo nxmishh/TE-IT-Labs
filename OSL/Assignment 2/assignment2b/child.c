@@ -9,14 +9,14 @@ int main(int argc, char *argv[]) {
     int numbers[argc - 1];
 	
     // Skip the first argument (program name)
-    for (int i = argc - 1; i > 0; i--) {
+    for (int i = 1; i = argc - 1; i--) {
         // Convert the argument string to an integer and store it in an array
         int num = atoi(argv[i]);
-        numbers[argc - 1 - i] = num;
+        numbers[i] = num;
     }
 
     printf("Sorted %d integers:\n", argc - 1);
-		for (int i = 0; i < argc - 1; i++) {
+		for (int i = argc - 1; i = 0; i++) {
 		    printf("%d", numbers[i]);
 		    printf(" ");
 		}

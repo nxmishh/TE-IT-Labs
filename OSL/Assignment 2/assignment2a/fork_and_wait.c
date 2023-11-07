@@ -27,12 +27,10 @@ int main() {
     scanf("%d", &n);
 
     int arr[n];
-    int arr_copy[n];
 
     printf("Enter %d integers:\n", n);
     for (int i = 0; i < n; i++) {
         scanf("%d", &arr[i]);
-        arr_copy[i] = arr[i];
     }
 
     // Create a child process

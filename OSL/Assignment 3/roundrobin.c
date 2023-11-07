@@ -19,7 +19,12 @@ void roundrobin(struct Process processes[], int n, int timeQuantum) {
     while (completed < n) {
         for (int i = 0; i < n; i++) {
             if (processes[i].burst_time > 0) {
-                int executionTime = (processes[i].burst_time < timeQuantum) ? processes[i].burst_time : timeQuantum;
+                int executionTime;
+                if (processes[i].burst_time < timeQuantum) {
+                    executionTime = processes[i].burst_time;
+                } else {
+                    executionTime = timeQuantum;
+                }
                 currentTime += executionTime;
                 processes[i].burst_time -= executionTime;
 
@@ -36,6 +41,7 @@ void roundrobin(struct Process processes[], int n, int timeQuantum) {
             }
         }
     }
+
 
     // Print Gantt chart
     printf("\nGantt Chart:\n");

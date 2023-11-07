@@ -21,7 +21,7 @@ int main()
 
     int available[m];
     int safesequence[n];
-
+    
     input(available);
     display(p);
     printf("\n\n");

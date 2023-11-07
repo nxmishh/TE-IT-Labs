@@ -1,13 +1,15 @@
 #include<math.h>
 #include<stdio.h>
 #include<stdlib.h>
+
 int main()
 {
-    int i,n,req[50],mov=0,cp;
+    int i,n,mov=0,cp;
     printf("enter the current position\n");
     scanf("%d",&cp);
     printf("enter the number of requests\n");
     scanf("%d",&n);
+    int req[n];
     printf("enter the request order\n");
     for(i=0;i<n;i++)
     {

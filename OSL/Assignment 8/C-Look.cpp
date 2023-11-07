@@ -1,3 +1,6 @@
+#include<iostream>
+#include<vector>
+#include<algorithm>
 
 using namespace std;
 int main(){
@@ -32,7 +35,7 @@ int main(){
         for(i=k;i<a.size();i++){
             l.push_back(a[i]);
         }
-        for(i=k-1;i>=0;i--){
+        for(i=0;i<k;i++){
             l.push_back(a[i]);
         }
     }
@@ -40,7 +43,7 @@ int main(){
         for(i=k;i>=0;i--){
             l.push_back(a[i]);
         }
-        for(i=k+1;i<a.size();i++){
+        for(i=a.size()-1;i>k;i--){
             l.push_back(a[i]);
         }
     }

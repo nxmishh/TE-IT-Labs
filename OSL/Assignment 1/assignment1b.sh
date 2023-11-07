@@ -39,43 +39,46 @@ create_ab(){
 }
 
 # SEARCH A RECORD
- search_ab(){
-	echo " "
-	echo "--------------------------------------"
-	echo " "
-	
-	read -p "Enter the name of the file : " name3
-	while [ true ]
-	do
-	echo "Which criteria do you want to search"
+search_ab(){
+    echo " "
+    echo "-----------------------------------------"
+    echo " "
+    read -p "Enter the name of the file in which you want to search the record : " name2
 
-	read -p " Name(1) or Phno(0) : " choice
+    while [ true ]
+    do 
+    echo "Enter the criteria for search " 
+    read -p " name(1)/ phno(2) / exit (3) : " chh
+        if [ $chh -eq 1 ] ; then 
+            read -p "Enter the name " nm
+            
+            if  grep -q $nm $name2   ; then 
+            echo " Record found "
+            grep $nm $name2
 
-	if [ $choice -eq 1 ]
-	then 
-	read -p "Enter the name :" nm
-	grep $nm $name3
+            else 
+            echo " Record Not found "
 
-	elif [ $choice -eq 0 ]
-	then 
-	read -p "Enter the Phone no :" pn
+            fi
 
-	echo "Record(s) Found :"
+        elif [ $chh -eq 2 ] ; then 
+            read -p "Enter the phone no." phno2
+            if  grep -q $phno2 $name2   ; then 
+            echo " Record found "
+            grep $phno2 $name2
+            else 
+            echo " Record Not found "
+            fi
 
-	grep $pn $name3
+        elif [ $chh -eq 2 ] ; then 
+            exit
 
-	elif [ $choice -eq 2 ]
-	then 
-	exit 
-
-	else 
-	echo "Enter valid criteria to search"
-
-	read -p "Name(1) or Phno(0) :" choice
-
-	fi
-	done
+        else 
+            read -p "Enter the correct choice : " chh
+        fi
+    done
 }
+
 
 # DELETE A RECORD
  delete_ab(){
@@ -112,9 +115,9 @@ create_ab(){
 	echo "The following record will be modified : "
 	grep $ppn $name5
 	
-	read -p "Enter the credential that you want to modify ( eg. name, phone no. etc ) :" oldword 
+	read -p "Enter the old credential that you want to modify ( eg. name, phone no. etc ) :" oldword 
 	echo
-	read -p "Enter the record with which you want to replace :" newword
+	read -p "Enter the new credential with which you want to replace :" newword
 
 	sed -i "/$ppn/s/$oldword/$newword/g" $name5
 }
@@ -146,10 +149,6 @@ echo ""
 
 
 read -p "Enter the choice " chh
-
-echo " "
-echo "--------------------------------------"
-echo " "
 
 
 	case $chh in

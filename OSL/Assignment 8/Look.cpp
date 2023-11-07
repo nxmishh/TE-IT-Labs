@@ -1,3 +1,6 @@
+#include<iostream>
+#include<vector>
+#include<algorithm>
 
 using namespace std;
 
@@ -8,23 +11,22 @@ int main(){
     cout<<"Enter number of requests\n";
     cin>>n;
     cout<<"Enter the requests\n";
-    vector <int> a(n),b;
+    vector <int> a(n),l;
     for(i=0;i<n;i++){
         cin>>a[i];
     }
     for(i=0;i<n;i++){
         if(a[i]>m){
-            cout<<"Error, Unknown position "<<a[i]<<"\n";
+            cout<<"Error, Unknown position\n";
             return 0;
         }
     }
     cout<<"Enter the head position\n";
     cin>>h;
-    int temp=h;
+
     a.push_back(h);
-    a.push_back(m);
-    a.push_back(0);
     sort(a.begin(),a.end());
+
     for(i=0;i<a.size();i++){
         if(h==a[i])
             break;
@@ -32,29 +34,29 @@ int main(){
     k=i;
     if(k<n/2){
         for(i=k;i<a.size();i++){
-            b.push_back(a[i]);
+            l.push_back(a[i]);
         }
         for(i=k-1;i>=0;i--){
-            b.push_back(a[i]);
+            l.push_back(a[i]);
         }
     }
-    else{    
+    else{
         for(i=k;i>=0;i--){
-            b.push_back(a[i]);
+            l.push_back(a[i]);
         }
         for(i=k+1;i<a.size();i++){
-            b.push_back(a[i]);
+            l.push_back(a[i]);
         }
     }
-    temp=b[0];
+    int temp=l[0];
     cout<<temp;
-    for(i=1;i<b.size();i++){
-        cout<<" -> "<<b[i];
-        sum+=abs(b[i]-temp);
-        temp=b[i];
+    for(i=1;i<l.size();i++){
+        cout<<" -> "<<l[i]<<' ';
+        sum+=abs(l[i]-temp);
+        temp=a[i];
     }
     cout<<'\n';
     cout<<"Total head movements = "<< sum<<'\n';
-    cout<<"Average head movement = "<<(float)sum/n<<'\n';
+
     return 0;
 }
